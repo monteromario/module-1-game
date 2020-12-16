@@ -1,0 +1,15 @@
+body {
+    background-color: #343d52;
+}
+
+canvas {
+    width: 720px;
+    height: 520px;
+    border: 1px dashed #5d6475;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
