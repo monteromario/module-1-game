@@ -5,9 +5,9 @@ window.onload = () => {
     game.onKeyEvent(event)
   })
 
-  document.addEventListener('keyup', (event) => {
-    game.onKeyEvent(event)
-  })
+  //document.addEventListener('keyup', (event) => {
+    //game.onKeyEvent(event)
+  //})
 
   game.start()
 }

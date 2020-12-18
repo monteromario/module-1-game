@@ -23,6 +23,7 @@ class Macman {
     this.sprite.horizontalFrameIndex = 2
     this.sprite.verticalFrameIndex = 2
     this.sprite.drawCount = 0
+    this.sprite.animateCount = 0
     this.sprite.onload = () => {
       this.sprite.isReady = true
       this.sprite.frameWidth = Math.floor(this.sprite.width / this.sprite.horizontalFrames)
@@ -62,11 +63,19 @@ class Macman {
       )
 
       this.sprite.drawCount++
+      if (this.sprite.drawCount % ANIMATE_FRAMES === 0) {
+          this.sprite.animateCount++
+      }
       this.animate()
     }
   }
 
   onKeyEvent(event) {
+      this.movements.up = false;
+      this.movements.down = false;
+      this.movements.right = false;
+      this.movements.left = false;
+
     const status = event.type === 'keydown'
     switch (event.keyCode) {
       case KEY_UP:
@@ -96,8 +105,8 @@ class Macman {
     } else if (this.movements.down) {
       this.vy = SPEED
     } else {
-      this.vx = 0
-      this.vy = 0
+      //this.vx = 0
+      //this.vy = 0
     }
 
     this.x += this.vx
@@ -125,8 +134,7 @@ class Macman {
         this.animateUp()
     } else if (this.movements.down) {
         this.animateDown()
-    }
-    
+    } 
   }
 
   resetAnimation() {
@@ -134,7 +142,7 @@ class Macman {
   }
 
   animateLeft() {
-    if (this.sprite.drawCount % MOVEMENT_FRAMES === 0) {
+    if (this.sprite.animateCount % MOVEMENT_FRAMES === 0) {
         this.sprite.horizontalFrameIndex = 0
         this.sprite.verticalFrameIndex = 2
     } else {
@@ -144,7 +152,7 @@ class Macman {
   }
 
   animateRight() {
-    if (this.sprite.drawCount % MOVEMENT_FRAMES === 0) {
+    if (this.sprite.animateCount % MOVEMENT_FRAMES === 0) {
         this.sprite.horizontalFrameIndex = 2
         this.sprite.verticalFrameIndex = 2
     } else {
@@ -154,7 +162,7 @@ class Macman {
   }
 
   animateUp() {
-    if (this.sprite.drawCount % MOVEMENT_FRAMES === 0) {
+    if (this.sprite.animateCount % MOVEMENT_FRAMES === 0) {
         this.sprite.horizontalFrameIndex = 0
         this.sprite.verticalFrameIndex = 0
     } else {
@@ -164,7 +172,7 @@ class Macman {
   }
 
   animateDown() {
-    if (this.sprite.drawCount % MOVEMENT_FRAMES === 0) {
+    if (this.sprite.animateCount % MOVEMENT_FRAMES === 0) {
         this.sprite.horizontalFrameIndex = 0
         this.sprite.verticalFrameIndex = 3
     } else {
