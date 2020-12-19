@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@font-face {
+    font-family: 'PressStart';
+    src: url('../PressStart2P-Regular.ttf') format('truetype');
+  }
+
 body {
     background-color: #343d52;
     font-family: 'Press Start 2P', cursive;
+}
+
+#scoreboard {
+    text-align: center;
+    padding-top: 25px
 }
 
 canvas {
