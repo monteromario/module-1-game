@@ -45,7 +45,7 @@ class Macman {
   }
 
   clear() {
-
+    game.bullets = game.bullets.filter(bullet => bullet.x <= this.ctx.canvas.width)
   }
 
   draw() {

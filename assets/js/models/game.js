@@ -9,9 +9,13 @@ class Game {
     this.drawInterval = undefined
 
     this.score = 0
+    this.highScore = 0
     this.lives = 3
     this.bullets = 0
+    this.isStarted = false
     this.canRestart = false
+    this.canFire = false
+    this.isInvencible = false
 
     this.background = new Background(this.ctx)
     this.macman = new Macman(this.ctx, 720/2, 540/2)
@@ -24,6 +28,18 @@ class Game {
 
     this.mushrooms = []
     this.flowers = []
+    this.fireballs = []
+    this.stars = []
+
+    this.sounds = {
+      theme: new Audio('assets/sound/theme.wav'),
+      coin: new Audio('assets/sound/coin.wav'),
+      liveUp: new Audio('assets/sound/1-up.wav'),
+      fireball: new Audio('assets/sound/fireball.wav'),
+      liveDown: new Audio('assets/sound/touch.wav'),
+      star: new Audio('assets/sound/star.mp3'),
+      end: new Audio('assets/sound/end.wav')
+    }
   }
     randomX() {
         return Math.floor(Math.random() * (this.canvas.width - 40));
@@ -38,6 +54,12 @@ class Game {
     }
 
   start() {
+    if (!window.localStorage.getItem('highScore')) {
+      this.highScore = 0
+    } else {
+      this.highScore = parseInt(window.localStorage.getItem('highScore'))
+    }
+    
     if (!this.drawInterval) {
       this.drawInterval = setInterval(() => {
         this.clear()
@@ -46,6 +68,9 @@ class Game {
         this.checkCollisions()
       }, this.fps);
     }
+    this.sounds.theme.loop = true;
+    this.sounds.theme.play()
+    this.sounds.theme.volume = 0.05
   }
 
   clear() {
@@ -59,6 +84,12 @@ class Game {
     this.enemies.forEach(enemy => enemy.draw())
     this.mushrooms.forEach(mushroom => mushroom.draw())
     this.flowers.forEach(flower => flower.draw())
+    this.fireballs.forEach(fireball => fireball.draw())
+    this.stars.forEach(star => star.draw())
+
+    if (this.isInvencible) {
+        this.invencibleAnimation()
+    }
   }
 
   move() {
@@ -66,9 +97,14 @@ class Game {
     this.enemies.forEach(enemy => enemy.move())
     this.mushrooms.forEach(mushroom => mushroom.move())
     this.flowers.forEach(flower => flower.move())
+    this.fireballs.forEach(fireball => fireball.move())
+    this.stars.forEach(star => star.move())
   }
 
   stop() {
+      this.saveScore()
+      this.sounds.theme.pause()
+      this.sounds.end.play()
       clearInterval(this.drawInterval)
       this.canRestart = true
       this.ctx.save()
@@ -101,6 +137,7 @@ class Game {
     this.drawInterval = undefined;
     this.score = 0
     this.lives = 3
+    this.bullets = 0
     this.canRestart = false
 
     this.background = new Background(this.ctx)
@@ -109,7 +146,12 @@ class Game {
     this.coins = []
     this.createCoins()
     this.enemies = []
-    this.createEnemies()   
+    this.createEnemies()
+    this.mushrooms = [] 
+    this.flowers = []
+    this.bullets = 0
+    this.fireballs = []
+    this.stars = []
     this.start()
 
     document.getElementById('icons').innerHTML = ''
@@ -132,12 +174,22 @@ class Game {
         this.enemies.push(new Enemy(this.ctx, this.randomX(), this.randomV(), this.randomY(), this.randomV()))
     }
   }
+
   createMushrooms() {
     this.mushrooms.push(new Mushroom(this.ctx, this.randomX(), this.randomV(), this.randomY(), this.randomV()))
   }
 
   createFlowers() {
     this.flowers.push(new Flower(this.ctx, this.randomX(), this.randomV(), this.randomY(), this.randomV()))
+  }
+
+  createFireballs() {
+      this.fireballs.push(new Bullet(this.ctx, this.macman.x + this.macman.width/2, this.macman.vx * 2, this.macman.y + this.macman.height/2, this.macman.vy * 2))
+      setTimeout(() => { this.fireballs.pop() }, 3000);
+  }
+
+  createStars() {
+    this.stars.push(new Star(this.ctx, this.randomX(), this.randomV(), this.randomY(), this.randomV()))
   }
 
   updateScore() {
@@ -149,6 +201,15 @@ class Game {
         document.getElementById('icons').innerHTML += `<img src="assets/img/mushroom.png" width="25" height="25">`
     }
     document.getElementById('bullets').innerHTML = this.bullets
+    document.getElementById('highScore').innerHTML = this.highScore
+  }
+
+  saveScore() {
+    if (this.highScore > this.score) {
+    } 
+    else {
+      window.localStorage.setItem('highScore',this.score)
+    }
   }
 
   onKeyEvent(event) {
@@ -156,6 +217,22 @@ class Game {
       case KEY_R:
         if (this.canRestart) {
             this.restart()
+        }
+        break;
+        case KEY_ENTER:
+        if (this.isStarted === false) {
+            this.isStarted = true
+            document.getElementById("scoreboard").removeAttribute("style")
+            document.getElementById("footer").removeAttribute("style")
+            document.getElementById("intro").remove();
+            this.start()
+        }
+        break;
+        case KEY_FIRE:
+        if (this.bullets > 0) {
+            this.createFireballs();
+            this.sounds.fireball.play()
+            this.bullets--
         }
         break;
       default:
@@ -171,7 +248,7 @@ class Game {
     clearInterval(this.drawInterval)
     this.drawInterval = undefined;
     setTimeout(() => { this.start() }, 600);
-    this.ctx.restore
+    this.ctx.restore()
   }
 
   liveAnimation() {
@@ -189,7 +266,7 @@ class Game {
     clearInterval(this.drawInterval)
     this.drawInterval = undefined;
     setTimeout(() => { this.start() }, 600);
-    this.ctx.restore
+    this.ctx.restore()
   }
 
   weaponAnimation() {
@@ -199,7 +276,29 @@ class Game {
     clearInterval(this.drawInterval)
     this.drawInterval = undefined;
     setTimeout(() => { this.start() }, 300);
-    this.ctx.restore
+    this.ctx.restore()
+  }
+
+  invencibleAnimation() {
+    this.ctx.save()
+    this.ctx.beginPath();
+    this.ctx.arc(this.macman.x + this.macman.width/2, this.macman.y + this.macman.height/2, 30, 0, 2 * Math.PI);
+    this.ctx.fillStyle = 'rgba(255, 165, 0, 0.3)'
+    this.ctx.fill();
+    setTimeout(() => { 
+        this.ctx.beginPath();
+    this.ctx.arc(this.macman.x + this.macman.width/2, this.macman.y + this.macman.height/2, 40, 0, 2 * Math.PI);
+    this.ctx.fillStyle = 'rgba(255, 165, 0, 0.4)'
+    this.ctx.fill(); 
+        }, 150);
+    setTimeout(() => { 
+        this.ctx.beginPath();
+    this.ctx.arc(this.macman.x + this.macman.width/2, this.macman.y + this.macman.height/2, 50, 0, 2 * Math.PI);
+    this.ctx.fillStyle = 'rgba(255, 165, 0, 0.5)'
+    this.ctx.fill(); 
+        }, 150);
+    
+    this.ctx.restore()
   }
 
   checkCollisions() {
@@ -212,6 +311,7 @@ class Game {
     this.score += newPoints
     this.updateScore()
     if (this.coins.length > restCoins.length) {
+        this.sounds.coin.play()
         let i = 0
         for (i = 0; i < INIT_COINS; i++) {
         restCoins.push(new Coin(this.ctx, this.randomX(), this.randomY()))
@@ -225,20 +325,30 @@ class Game {
         this.createFlowers()
         setTimeout(() => { this.flowers = [] }, FLOWER_TIME);
         }
+        if (this.score != 0 && this.score % STAR_FREQ === 0) {
+        this.createStars()
+        setTimeout(() => { this.mushrooms = [] }, MUSHROOM_TIME);
+        }
     }
     this.coins = restCoins
 
     const restEnemies = this.enemies.filter(enemy => !this.macman.collidesWith(enemy))
     if (this.enemies.length > restEnemies.length) {
+        if (this.isInvencible) {
+            this.enemies = restEnemies
+        } else {
         this.damageAnimation()
+        this.sounds.liveDown.play()
         this.lives--
         this.enemies = restEnemies
         this.updateScore()
+        }
     }
 
     const restMushrooms = this.mushrooms.filter(mushroom => !this.macman.collidesWith(mushroom))
     if (this.mushrooms.length > restMushrooms.length) {
         this.liveAnimation()
+        this.sounds.liveUp.play()
         this.lives++
         this.mushrooms = restMushrooms
         this.updateScore()
@@ -247,10 +357,32 @@ class Game {
     const restFlowers = this.flowers.filter(flower => !this.macman.collidesWith(flower))
     if (this.flowers.length > restFlowers.length) {
         this.weaponAnimation()
-        this.bullets++
+        this.bullets+= 3
         this.flowers = restFlowers
         this.updateScore()
     }
 
-  }
+    if (this.bullets > 0) {
+        let i = 0
+        for (i=0; i < this.fireballs.length; i++) {
+            let bullet = this.fireballs[i]
+            const restEnemies = this.enemies.filter(enemy => !bullet.collidesWith(enemy));
+            this.enemies = restEnemies
+            }
+        }
+
+    const restStars = this.stars.filter(star => !this.macman.collidesWith(star))
+    if (this.stars.length > restStars.length) {
+        this.weaponAnimation()
+        this.stars = restStars
+        this.isInvencible = true
+        this.sounds.star.play()
+        setTimeout(() => { 
+            this.isInvencible = false 
+            this.sounds.star.pause()
+            }, INVENCIBLE_TIME);
+    }
+
+    }
+
 }

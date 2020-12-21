@@ -9,5 +9,5 @@ window.onload = () => {
     //game.onKeyEvent(event)
   //})
 
-  game.start()
+  //game.start()
 }

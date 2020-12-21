@@ -5,6 +5,7 @@ const KEY_LEFT = 37
 const KEY_FIRE = 32
 const KEY_P = 80
 const KEY_R = 82
+const KEY_ENTER = 13
 
 const MOVEMENT_FRAMES = 3
 const MOVEMENT_FRAMES_COIN = 10
@@ -18,5 +19,9 @@ const INIT_ENEMIES = 1
 const MUSHROOM_FREQ = 10
 const MUSHROOM_TIME = 5000
 
-const FLOWER_FREQ = 3
+const FLOWER_FREQ = 8
 const FLOWER_TIME = 5000
+
+const STAR_FREQ = 15
+const STAR_TIME = 5000
+const INVENCIBLE_TIME = 5000

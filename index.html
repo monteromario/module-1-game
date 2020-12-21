@@ -10,18 +10,28 @@
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
     </head>
     <body>
-        <div id="scoreboard">
-            <span>Score: </span>
-            <span id="score"></span>
-            <span>Lives: </span>
-            <span id="lives"></span>
-            <span id="icons">
-                
-            </span>
-            <span><img src="./assets/img/flower.png" width="20" height="20"> x</span>
-            <span id="bullets">
+        <div id="container">
+            <div id="intro" class="blink">Press ENTER to start</div>
+            <div id="scoreboard" style="display: none;">
+                <div>
+                    <span>Score: </span><span id="score"></span>
+                </div>
+                <div>
+                    <span>Lives: </span>
+                    <span id="lives"></span>
+                    <span id="icons"></span>
+                </div>
+                <div>
+                    <span><img src="./assets/img/flower.png" width="20" height="20"> x</span>
+                    <span id="bullets">
+                </div>
+            </div>
+            <canvas id="game-canvas" class="vertical-center"></canvas>
+            <div id="footer" style="display: none;">
+                <span>High Score: </span>
+                <span id="highScore"></span>
+            </div>
         </div>
-        <canvas id="game-canvas" class="vertical-center"></canvas>
     
         <script src="./assets/js/constants.js"></script>
         <script src="./assets/js/models/background.js"></script>
@@ -30,6 +40,8 @@
         <script src="./assets/js/models/macman.js"></script>
         <script src="./assets/js/models/mushroom.js"></script>
         <script src="./assets/js/models/flower.js"></script>
+        <script src="./assets/js/models/bullet.js"></script>
+        <script src="./assets/js/models/star.js"></script>
         <script src="./assets/js/models/game.js"></script>
         <script src="./assets/js/index.js"></script>
     </body>

@@ -5,14 +5,42 @@
     src: url('../PressStart2P-Regular.ttf') format('truetype');
   }
 
+@keyframes blinker {
+    50% {
+      opacity: 0.1;
+    }
+}
+
 body {
     background-color: #343d52;
     font-family: 'Press Start 2P', cursive;
 }
 
+#container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 #scoreboard {
     text-align: center;
-    padding-top: 25px
+    padding-top: calc((100% - 520px)/4);
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 720px;
+    padding-bottom: 10px
+}
+
+#intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 canvas {
@@ -20,9 +48,13 @@ canvas {
     height: 520px;
     border: 1px dashed #5d6475;
     margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
 }
+
+#footer {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+  }
