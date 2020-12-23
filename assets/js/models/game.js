@@ -35,10 +35,14 @@ class Game {
       theme: new Audio('assets/sound/theme.wav'),
       coin: new Audio('assets/sound/coin.wav'),
       liveUp: new Audio('assets/sound/1-up.wav'),
+      power: new Audio('assets/sound/power.wav'),
       fireball: new Audio('assets/sound/fireball.wav'),
       liveDown: new Audio('assets/sound/touch.wav'),
       star: new Audio('assets/sound/star.mp3'),
-      end: new Audio('assets/sound/end.wav')
+      end: new Audio('assets/sound/end.wav'),
+      here_we_go: new Audio('assets/sound/here_we_go.wav'),
+      thank_you: new Audio('assets/sound/thank_you.wav'),
+      press_start: new Audio('assets/sound/press_start.wav'),
     }
   }
     randomX() {
@@ -70,7 +74,7 @@ class Game {
     }
     this.sounds.theme.loop = true;
     this.sounds.theme.play()
-    this.sounds.theme.volume = 0.05
+    this.sounds.theme.volume = VOLUME / 3
   }
 
   clear() {
@@ -105,6 +109,7 @@ class Game {
       this.saveScore()
       this.sounds.theme.pause()
       this.sounds.end.play()
+      this.sounds.end.volume = VOLUME
       clearInterval(this.drawInterval)
       this.canRestart = true
       this.ctx.save()
@@ -222,16 +227,21 @@ class Game {
         case KEY_ENTER:
         if (this.isStarted === false) {
             this.isStarted = true
-            document.getElementById("scoreboard").removeAttribute("style")
-            document.getElementById("footer").removeAttribute("style")
-            document.getElementById("intro").remove();
-            this.start()
+            this.sounds.here_we_go.volume = VOLUME;
+            this.sounds.here_we_go.play() 
+                document.getElementById("intro").remove();
+                document.getElementById("intro_footer").remove();
+            setTimeout(() => { 
+                document.getElementById("scoreboard").removeAttribute("style")
+                document.getElementById("footer").removeAttribute("style")
+                this.start() }, 1500);
         }
         break;
         case KEY_FIRE:
         if (this.bullets > 0) {
             this.createFireballs();
             this.sounds.fireball.play()
+            this.sounds.fireball.volume = VOLUME
             this.bullets--
         }
         break;
@@ -312,6 +322,7 @@ class Game {
     this.updateScore()
     if (this.coins.length > restCoins.length) {
         this.sounds.coin.play()
+        this.sounds.coin.volume = VOLUME
         let i = 0
         for (i = 0; i < INIT_COINS; i++) {
         restCoins.push(new Coin(this.ctx, this.randomX(), this.randomY()))
@@ -339,6 +350,7 @@ class Game {
         } else {
         this.damageAnimation()
         this.sounds.liveDown.play()
+        this.sounds.liveDown.volume = VOLUME
         this.lives--
         this.enemies = restEnemies
         this.updateScore()
@@ -349,6 +361,7 @@ class Game {
     if (this.mushrooms.length > restMushrooms.length) {
         this.liveAnimation()
         this.sounds.liveUp.play()
+        this.sounds.liveUp.volume = VOLUME
         this.lives++
         this.mushrooms = restMushrooms
         this.updateScore()
@@ -357,6 +370,8 @@ class Game {
     const restFlowers = this.flowers.filter(flower => !this.macman.collidesWith(flower))
     if (this.flowers.length > restFlowers.length) {
         this.weaponAnimation()
+        this.sounds.power.play()
+        this.sounds.power.volume = VOLUME
         this.bullets+= 3
         this.flowers = restFlowers
         this.updateScore()
@@ -377,6 +392,7 @@ class Game {
         this.stars = restStars
         this.isInvencible = true
         this.sounds.star.play()
+        this.sounds.star.volume = VOLUME
         setTimeout(() => { 
             this.isInvencible = false 
             this.sounds.star.pause()

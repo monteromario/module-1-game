@@ -8,10 +8,13 @@
         <link rel="stylesheet" href="./assets/css/index.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="./assets/css/all.min.css">
     </head>
     <body>
         <div id="container">
-            <div id="intro" class="blink">Press ENTER to start</div>
+            <div id="intro"><img src="./assets/img/macman_logo.png" width="100%">
+                <p class="blink">Press ENTER to start</p>
+            </div>
             <div id="scoreboard" style="display: none;">
                 <div>
                     <span>Score: </span><span id="score"></span>
@@ -27,12 +30,37 @@
                 </div>
             </div>
             <canvas id="game-canvas" class="vertical-center"></canvas>
+            <div id="intro_footer">
+                <div id="settings-btn">
+                    <span>Settings</span>
+                </div>
+                <div id="instructions-btn">
+                    <span>Instructions</span>
+                </div>
+                <div id="credits-btn">
+                    <span>Credits</span>
+                </div>
+            </div>
             <div id="footer" style="display: none;">
-                <span>High Score: </span>
-                <span id="highScore"></span>
+                <div>
+                    <span>High Score: </span>
+                    <span id="highScore"></span>
+                </div>
+                <div>
+                    <span id="exit">Exit</span>
+                </div>
+                <div>
+                    <span>Volume:</span>
+                    <span id="volume"><i id="vol-ico" class="fas fa-volume-up fa-lg"></i></span>
+                </div>
+            </div>
+            <div id="instructions" style="display: none;"> 
+            </div>
+            <div id="settings" style="display: none;">
+            </div>
+            <div id="credits" style="display: none;">
             </div>
         </div>
-    
         <script src="./assets/js/constants.js"></script>
         <script src="./assets/js/models/background.js"></script>
         <script src="./assets/js/models/coin.js"></script>

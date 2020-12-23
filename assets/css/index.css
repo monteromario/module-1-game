@@ -16,12 +16,21 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 
+a {
+    color: #5d6475
+}
+
+a:hover {
+    color: black
+}
+
 #container {
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 #scoreboard {
@@ -43,6 +52,14 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#intro_footer {
+    text-align: center;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 canvas {
     width: 720px;
     height: 520px;
@@ -53,8 +70,38 @@ canvas {
 #footer {
     text-align: center;
     padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#settings, #instructions, #credits {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .blink {
     animation: blinker 1s linear infinite;
   }
+
+.red {
+    color: red
+}
+
+.selected {
+    background-color: #5d6475;
+}
+
+#exit:hover {
+    color: red
+}
+
+#settings-btn, #instructions-btn, #credits-btn, .grey {
+    color: #5d6475
+}
+
+#settings-btn:hover, #instructions-btn:hover, #credits-btn:hover {
+    color: black
+}
