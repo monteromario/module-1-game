@@ -37,10 +37,6 @@ class Enemy {
     return this.sprite.isReady
   }
 
-  clear() {
-
-  }
-
   draw() {
     if (this.isReady()) {
       this.ctx.drawImage(
@@ -63,10 +59,7 @@ class Enemy {
     }
   }
 
-  
-
   move() {
-
     this.x += this.vx
     this.y += this.vy
 
@@ -95,10 +88,6 @@ class Enemy {
         this.sprite.horizontalFrameIndex = 1
         this.sprite.verticalFrameIndex = 0
     } 
-  }
-
-  resetAnimation() {
-    
   }
 
   collidesWith(element) {

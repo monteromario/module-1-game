@@ -234,7 +234,8 @@ class Game {
             setTimeout(() => { 
                 document.getElementById("scoreboard").removeAttribute("style")
                 document.getElementById("footer").removeAttribute("style")
-                this.start() }, 1500);
+                this.start() 
+            }, 1500);
         }
         break;
         case KEY_FIRE:
@@ -245,7 +246,7 @@ class Game {
             this.bullets--
         }
         break;
-      default:
+    default:
         break;
     }
     this.macman.onKeyEvent(event)
@@ -398,7 +399,5 @@ class Game {
             this.sounds.star.pause()
             }, INVENCIBLE_TIME);
     }
-
     }
-
 }

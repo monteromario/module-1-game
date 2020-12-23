@@ -61,7 +61,6 @@ class Macman {
         this.width,
         this.height
       )
-
       this.sprite.drawCount++
       if (this.sprite.drawCount % ANIMATE_FRAMES === 0) {
           this.sprite.animateCount++
@@ -105,8 +104,6 @@ class Macman {
     } else if (this.movements.down) {
       this.vy = SPEED
     } else {
-      //this.vx = 0
-      //this.vy = 0
     }
 
     this.x += this.vx
@@ -135,10 +132,6 @@ class Macman {
     } else if (this.movements.down) {
         this.animateDown()
     } 
-  }
-
-  resetAnimation() {
-    
   }
 
   animateLeft() {

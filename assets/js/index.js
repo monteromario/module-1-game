@@ -1,27 +1,27 @@
 window.onload = () => {
-  const game = new Game('game-canvas')
+    const game = new Game('game-canvas')
 
-  document.addEventListener('keydown', (event) => {
-    game.onKeyEvent(event)
-  })
+    document.addEventListener('keydown', (event) => {
+        game.onKeyEvent(event)
+    })
 
-  document.querySelectorAll('#volume').forEach(click => {
-    click.addEventListener('click', () => {
-    if (VOLUME > 0) {
-        game.sounds.theme.pause();
-        VOLUME = 0;
-        document.querySelector('#vol-ico').classList.remove("fa-volume-up");
-        document.querySelector('#vol-ico').classList.add("fa-volume-mute");
-        document.querySelector('#vol-ico').classList.add("red");
-    } else {
-        game.sounds.theme.play();
-        VOLUME = 0.05;
-        document.querySelector('#vol-ico').classList.remove("fa-volume-mute");
-        document.querySelector('#vol-ico').classList.remove("red");
-        document.querySelector('#vol-ico').classList.add("fa-volume-up");
-        }
-    })
-    })
+    document.querySelectorAll('#volume').forEach(click => {
+        click.addEventListener('click', () => {
+        if (VOLUME > 0) {
+            game.sounds.theme.pause();
+            VOLUME = 0;
+            document.querySelector('#vol-ico').classList.remove("fa-volume-up");
+            document.querySelector('#vol-ico').classList.add("fa-volume-mute");
+            document.querySelector('#vol-ico').classList.add("red");
+        } else {
+            game.sounds.theme.play();
+            VOLUME = 0.05;
+            document.querySelector('#vol-ico').classList.remove("fa-volume-mute");
+            document.querySelector('#vol-ico').classList.remove("red");
+            document.querySelector('#vol-ico').classList.add("fa-volume-up");
+            }
+        })
+        })
 
     document.querySelectorAll('#exit').forEach(click => {
         click.addEventListener('click', () => {
@@ -187,17 +187,5 @@ window.onload = () => {
                 document.getElementById("sound-off-btn").setAttribute("class", "selected");
             })
             })
-        
-    
     }
-
-        
-
-  //document.addEventListener('keyup', (event) => {
-    //game.onKeyEvent(event)
-  //})
-
-  //game.start()
-
-    
 }

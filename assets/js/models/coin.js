@@ -1,7 +1,6 @@
 class Coin {
   constructor(ctx, x, y) {
     this.ctx = ctx
-
     this.x = x
     this.y = y
 
@@ -53,6 +52,5 @@ class Coin {
       }
       this.sprite.drawCount = 0
     }
-  }  
-    
+  }   
 }
