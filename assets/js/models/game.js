@@ -75,6 +75,9 @@ class Game {
     this.sounds.theme.loop = true;
     this.sounds.theme.play()
     this.sounds.theme.volume = VOLUME / 3
+
+    this.ctx.font = '0px PressStart'
+        this.ctx.fillText('Loading font...',0,0,)
   }
 
   clear() {
@@ -115,7 +118,7 @@ class Game {
       this.ctx.save()
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-        this.ctx.font = '64px Press-Start-2P'
+        this.ctx.font = '42px PressStart'
         this.ctx.fillStyle = 'red'
         this.ctx.textAlign = 'center'
         this.ctx.fillText(
@@ -123,7 +126,7 @@ class Game {
       this.canvas.width / 2,
       this.canvas.height / 3,
     )
-        this.ctx.font = '32px Press-Start-2P'
+        this.ctx.font = '18px PressStart'
         this.ctx.fillStyle = 'white'
         this.ctx.fillText(
         `Score: ${this.score}`,
