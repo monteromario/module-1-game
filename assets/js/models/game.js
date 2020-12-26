@@ -177,9 +177,10 @@ class Game {
   }
 
   createEnemies() {
+    let randNum = Math.floor((Math.random() * 3) + 1)
     let i = 0
     for (i = 0; i < INIT_ENEMIES; i++) {
-        this.enemies.push(new Enemy(this.ctx, this.randomX(), this.randomV(), this.randomY(), this.randomV()))
+        this.enemies.push(new Enemy(this.ctx, this.randomX(), this.randomV(), this.randomY(), this.randomV(), randNum))
     }
   }
 

@@ -5,6 +5,48 @@ window.onload = () => {
         game.onKeyEvent(event)
     })
 
+    document.querySelectorAll('#btn-r').forEach(click => {
+        click.addEventListener('click', () => {
+            game.onKeyEvent({keyCode: 82,})
+        })
+        })
+    
+    document.querySelectorAll('#btn-enter').forEach(click => {
+        click.addEventListener('click', () => {
+            game.onKeyEvent({keyCode: 13,})
+        })
+        })
+
+    document.querySelectorAll('#btn-space').forEach(click => {
+        click.addEventListener('click', () => {
+            game.onKeyEvent({keyCode: 32,})
+        })
+        })
+
+    document.querySelectorAll('#btn-up').forEach(click => {
+        click.addEventListener('click', () => {
+            game.onKeyEvent({keyCode: 38, type: 'keydown'})
+        })
+        })
+    
+    document.querySelectorAll('#btn-left').forEach(click => {
+        click.addEventListener('click', () => {
+            game.onKeyEvent({keyCode: 37, type: 'keydown'})
+        })
+        })
+
+    document.querySelectorAll('#btn-right').forEach(click => {
+        click.addEventListener('click', () => {
+            game.onKeyEvent({keyCode: 39, type: 'keydown'})
+        })
+        })
+
+    document.querySelectorAll('#btn-down').forEach(click => {
+        click.addEventListener('click', () => {
+            game.onKeyEvent({keyCode: 40, type: 'keydown'})
+        })
+        })
+    
     document.querySelectorAll('#volume').forEach(click => {
         click.addEventListener('click', () => {
         if (VOLUME > 0) {
@@ -71,7 +113,7 @@ window.onload = () => {
                 <p>Fire balls: <img src="assets/img/flower.png" width="25"></p>
                 <p>Extra life: <img src="assets/img/mushroom.png" width="25"></p>
                 <p>Invencibility: <img src="assets/img/star.png" width="25"></p>
-                <p>Enemies: <img src="assets/img/enemy_1.png" width="25"></p>
+                <p>Enemies: <img src="assets/img/enemy_1.png" width="25"> <img src="assets/img/enemy_2.png" width="20"> <img src="assets/img/enemy_3.png" width="25"></p>
                 <img src="./assets/img/macman_logo.png" width="25%">
                 <p class="blink"><a id="back-btn">GO BACK</a></p>`;
             setBackBtn();

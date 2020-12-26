@@ -1,5 +1,5 @@
 class Enemy {
-  constructor(ctx, x, vx, y, vy) {
+  constructor(ctx, x, vx, y, vy, type) {
     this.ctx = ctx
 
     this.x = x
@@ -12,11 +12,21 @@ class Enemy {
     this.maxY = this.ctx.canvas.height
     this.vy = vy
 
+    this.type = type
+
     this.width = 0
     this.height = 0
 
     this.sprite = new Image()
-    this.sprite.src = './assets/img/enemy_1_sprite.png'
+
+    if (this.type === 1) {
+      this.sprite.src = './assets/img/enemy_1_sprite.png'
+    } else if (this.type === 2) {
+      this.sprite.src = './assets/img/enemy_2_sprite.png'
+    } else if (this.type === 3) {
+      this.sprite.src = './assets/img/enemy_3_sprite.png'
+    }
+
     this.sprite.isReady = false
     this.sprite.horizontalFrames = 2
     this.sprite.verticalFrames = 1

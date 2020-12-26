@@ -6,11 +6,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="./assets/css/index.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"> 
         <link rel="stylesheet" href="./assets/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
     </head>
     <body>
+        <div id="left-controls">
+            <div id="left-top"><i id="btn-r" class="far fa-registered fa-4x"></i></div>
+            <div id="left-middle"><i id="btn-enter" class="fas fa-share fa-4x fa-flip-both"></i></div>
+            <div id="left-bottom"><i id="btn-space"><i class="fas fa-square-full fa-2x"></i><i class="fas fa-square-full fa-2x"></i><i class="fas fa-square-full fa-2x"></i></i></div>
+        </div>
         <div id="container">
             <div id="intro"><img src="./assets/img/macman_logo.png" width="100%">
                 <p class="blink">Press ENTER to start</p>
@@ -60,6 +65,18 @@
             </div>
             <div id="credits" style="display: none;">
             </div>
+        </div>
+        <div id="right-controls">
+            <div id="right-top"><i id="btn-up" class="fas fa-arrow-circle-up fa-4x"></i></div>
+            <div id="right-middle"><i id="btn-left" class="fas fa-arrow-circle-left fa-4x"></i><i id="btn-right" class="fas fa-arrow-circle-right fa-4x"></i></div>
+            <div id="right-bottom"><i id="btn-down" class="fas fa-arrow-circle-down fa-4x"></i></div>
+        </div>
+        <div id="rotate-phone">
+            <p>ROTATE</p>
+            <p>YOUR DEVICE</p>
+            <img src="./assets/img/rotate_phone.gif">
+            <p>TO START</p>
+            <p>PLAYING</p>
         </div>
         <script src="./assets/js/constants.js"></script>
         <script src="./assets/js/models/background.js"></script>
