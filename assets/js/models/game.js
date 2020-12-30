@@ -10,7 +10,7 @@ class Game {
 
     this.score = 0
     this.highScore = 0
-    this.lives = 3
+    this.lives = LIVES
     this.bullets = 0
     this.isStarted = false
     this.canRestart = false
@@ -144,7 +144,7 @@ class Game {
   restart() {
     this.drawInterval = undefined;
     this.score = 0
-    this.lives = 3
+    this.lives = LIVES
     this.bullets = 0
     this.canRestart = false
 
@@ -238,6 +238,7 @@ class Game {
             setTimeout(() => { 
                 document.getElementById("scoreboard").removeAttribute("style")
                 document.getElementById("footer").removeAttribute("style")
+                this.lives = LIVES
                 this.start() 
             }, 1500);
         }
@@ -270,7 +271,7 @@ class Game {
     this.ctx.save()
     this.ctx.fillStyle = 'rgba(0, 255, 0, 0.5)'
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-    this.ctx.font = '64px Press-Start-2P'
+    this.ctx.font = '64px PressStart'
         this.ctx.fillStyle = 'white'
         this.ctx.textAlign = 'center'
         this.ctx.fillText(
@@ -317,7 +318,6 @@ class Game {
   }
 
   checkCollisions() {
-    
     if (this.lives === 0) {
         this.stop()
     }
@@ -405,3 +405,4 @@ class Game {
     }
     }
 }
+

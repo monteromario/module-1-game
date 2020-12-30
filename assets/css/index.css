@@ -75,11 +75,18 @@ canvas {
     justify-content: space-between;
 }
 
-#settings, #instructions, #credits {
+#settings, #advanced-settings, #instructions, #credits {
     text-align: center;
     position: absolute;
     top: 0;
     left: 0;
+}
+
+#rows-div {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .blink {
@@ -136,8 +143,16 @@ canvas {
         height: 300px;
     }
 
-    #instructions {
-        font-size: 0.65em;
+    #settings, #advanced-settings, #instructions, #credits {
+        font-size: 0.8em;
+    }
+
+    #instructions img {
+        height: 20px;
+    }
+
+    #instructions i {
+        height: 15px;
     }
 
     #left-controls {
@@ -172,6 +187,11 @@ canvas {
 
     i {
         text-shadow: 2px 2px black;
+    }
+
+    #rows-div i {
+        text-shadow: none;
+        font-size: 1.3em;
     }
 
     i:hover {
