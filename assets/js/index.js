@@ -153,7 +153,8 @@ window.onload = () => {
                 <p>A tribute to Super Mario Bros&copy; and Pacman&copy;</p>
                 <br><br>
                 <p>By: <a href="http://www.mariomontero.es" target="_blank">Mario Montero</a></p>
-                <br><br><br><br>
+                <p>Any bugs or comments? <a href="https://forms.gle/mTyqM9tpUnU4YQob7" target="_blank">Let me know!</a></p>
+                <br><br>
                 <img src="./assets/img/macman_logo.png" width="25%">
                 <br><br>
                 <p class="blink"><a id="back-btn">GO BACK</a></p>`;

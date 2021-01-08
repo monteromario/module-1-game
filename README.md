@@ -17,6 +17,12 @@ If you want to do it locally in your computer, clone the repository following th
 -  `cd module-1-game`
 -  `open index.html`
 
+## In-game instructions
+
+Use your keyboard arrows to move Mac-man and eat as much coins as possible. Every coin will add 1 point to your score. Avoid the enemies, every time an enemy hits you you will loose 1 live. Game finishes when you get out of lives. If you find a flower you will get 3 fireballs to be thrown to your enemies. If you find a star you will be invencible for a short per¡od of time.
+
+Try to beat yourself and get the higher score possible. You can use advanced settings to increase game's difficulty.
+
 ## Team Members
 
-This was a solo exercise completed by me: [Mario Montero](http://www.mariomontero.es).
+This was a solo exercise completed by me: [Mario Montero](http://www.mariomontero.es). Did you find any bug or you have some comments? Just [let me know](https://forms.gle/mTyqM9tpUnU4YQob7)!
