@@ -148,7 +148,7 @@ window.onload = () => {
                 <br><br>
                 <p><strong>MAC-MAN</strong></p>
                 <br><br>
-                <p>Version: ${VERSION} - 2021</p>
+                <p>Version: ${VERSION.toFixed(2)} - 2021</p>
                 <br><br>
                 <p>A tribute to Super Mario Bros&copy; and Pacman&copy;</p>
                 <br><br>

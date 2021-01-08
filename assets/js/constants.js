@@ -30,4 +30,4 @@ let INVENCIBLE_TIME = 5000
 
 let VOLUME = 0.05
 
-const VERSION = 0.99
+const VERSION = 1.00
